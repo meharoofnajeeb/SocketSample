@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct SocketSampleApp: App {
+    let socketHandler: SocketHandler
+    let viewModel: ViewModel
+    
+    init() {
+        socketHandler = SocketHandler()
+        viewModel = ViewModel(handler: socketHandler)
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: viewModel)
         }
     }
 }

@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5FC884BE2E4C2E1800D5956E /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 5FC884BD2E4C2E1800D5956E /* SocketIO */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		5FC8849B2E4BBD3000D5956E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,9 +33,22 @@
 		5FC884A42E4BBD3000D5956E /* SocketSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocketSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5FC884B92E4C2AC800D5956E /* Exceptions for "SocketSample" folder in "SocketSample" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 5FC8848C2E4BBD2E00D5956E /* SocketSample */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5FC8848F2E4BBD2E00D5956E /* SocketSample */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5FC884B92E4C2AC800D5956E /* Exceptions for "SocketSample" folder in "SocketSample" target */,
+			);
 			path = SocketSample;
 			sourceTree = "<group>";
 		};
@@ -52,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FC884BE2E4C2E1800D5956E /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +96,7 @@
 				5FC8848F2E4BBD2E00D5956E /* SocketSample */,
 				5FC8849D2E4BBD3000D5956E /* SocketSampleTests */,
 				5FC884A72E4BBD3000D5956E /* SocketSampleUITests */,
+				5FC884BC2E4C2E1800D5956E /* Frameworks */,
 				5FC8848E2E4BBD2E00D5956E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +109,13 @@
 				5FC884A42E4BBD3000D5956E /* SocketSampleUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5FC884BC2E4C2E1800D5956E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +138,7 @@
 			);
 			name = SocketSample;
 			packageProductDependencies = (
+				5FC884BD2E4C2E1800D5956E /* SocketIO */,
 			);
 			productName = SocketSample;
 			productReference = 5FC8848D2E4BBD2E00D5956E /* SocketSample.app */;
@@ -195,6 +222,9 @@
 			);
 			mainGroup = 5FC884842E4BBD2E00D5956E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5FC884B72E4C29D800D5956E /* XCRemoteSwiftPackageReference "socket" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5FC8848E2E4BBD2E00D5956E /* Products */;
 			projectDirPath = "";
@@ -400,6 +430,7 @@
 				DEVELOPMENT_TEAM = C8X33J96A7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SocketSample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +459,7 @@
 				DEVELOPMENT_TEAM = C8X33J96A7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SocketSample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -558,6 +590,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5FC884B72E4C29D800D5956E /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5FC884BD2E4C2E1800D5956E /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5FC884B72E4C29D800D5956E /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5FC884852E4BBD2E00D5956E /* Project object */;
 }

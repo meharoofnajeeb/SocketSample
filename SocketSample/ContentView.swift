@@ -6,19 +6,92 @@
 //
 
 import SwiftUI
+import SocketIO
+
+class ViewModel: ObservableObject {
+    @Published var counter: Int = 0
+    @Published var textReceived: String = ""
+    @Published var textToSend: String = ""
+    var socketHandler: SocketHandler
+    let userID = UUID()
+    lazy private var mSocket: SocketIOClient = {
+        return socketHandler.getSocket()
+    }()
+    
+    init(handler: SocketHandler) {
+        socketHandler = handler
+        setup()
+    }
+    
+    private func setup() {
+        socketHandler.establishConnection()
+        
+        mSocket.on("counter") { dataArray, ack in
+            guard let data = dataArray[0] as? Int else {
+                print("error")
+                return
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.counter = data
+            }
+        }
+        
+        mSocket.on("messageReceived") { [weak self] dataArray, ack in
+            print("Data array - \(dataArray)")
+            guard let message = dataArray[0] as? String, let senderId = dataArray[1] as? String, senderId != self?.userID.uuidString else {
+                print("error")
+                return
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.textReceived = message
+            }
+        }
+    }
+    
+    func emitCounter() {
+        mSocket.emit("counter")
+    }
+    
+    func sendMessage() {
+        mSocket.emit("message", textToSend, userID.uuidString)
+    }
+    
+    deinit {
+        socketHandler.closeConnection()
+    }
+}
 
 struct ContentView: View {
+    @StateObject var viewModel: ViewModel
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 40) {
+            HStack {
+                Text("\(viewModel.counter)")
+                Spacer()
+                Button {
+                    viewModel.emitCounter()
+                } label: {
+                    Text("Counter")
+                }
+            }
+            
+            VStack {
+                Text("\(viewModel.textReceived)")
+                HStack {
+                    TextField("Message to be sent", text: $viewModel.textToSend)
+                    Button {
+                        viewModel.sendMessage()
+                    } label: {
+                        Text("SEND")
+                    }
+                }
+            }
         }
         .padding()
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}
